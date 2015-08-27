@@ -24,7 +24,7 @@ function pageLoad() {
 
 function getFoods() {
   $.get("/foods", function(res){ 
-    var foods = JSON.parse(res).reverse();
+    var foods = res.reverse();
     // grab foods template
     renderFoods(foods)
   });

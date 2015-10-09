@@ -3,7 +3,6 @@ var express = require("express"),
     app = express(),
     path = require("path"),
     bodyParser = require("body-parser"),
-    // _ = require("underscore"),
     where = require("./utils/where"),
     views = path.join(process.cwd(), "views/");
 
@@ -49,10 +48,11 @@ app.delete("/api/foods/:id", function (req, res){
   // set the value of the id
   var targetId = parseInt(req.params.id, 10);
   // find item in the array matching the id
-  // var targetItem = _.findWhere(foods, {id: targetId});
   var targetItem = where(foods, {id: targetId});
   // get the index of the found item
   var index = foods.indexOf(targetItem);
+  console.log(index);
+  console.log(targetItem);
   // remove the item at that index, only remove 1 item
   foods.splice(index, 1);
   // render deleted object

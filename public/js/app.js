@@ -13,7 +13,7 @@ function pageLoad() {
     // prevent form submission
     e.preventDefault();
     // post to food#create
-    $.post("/foods", $(this).serialize())
+    $.post("/api/foods", $(this).serialize())
       .done(function(res){
         // append new food to the page
         getFoods();
@@ -23,10 +23,10 @@ function pageLoad() {
 }
 
 function getFoods() {
-  $.get("/foods", function(res){ 
-    var foods = res.reverse();
+  $.get("/api/foods", function(response){ 
+    var foods = response.reverse();
     // grab foods template
-    renderFoods(foods)
+    renderFoods(foods);
   });
 }
 
@@ -45,7 +45,7 @@ function renderFoods(foods) {
 function deleteFood(context) {
   var foodId = $(context).data().id;
   $.ajax({
-    url: '/foods/' + foodId,
+    url: '/api/foods/' + foodId,
     type: 'DELETE',
     success: function(res) {
       // once successfull, re-render all foods

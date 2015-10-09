@@ -51,8 +51,6 @@ app.delete("/api/foods/:id", function (req, res){
   var targetItem = where(foods, {id: targetId});
   // get the index of the found item
   var index = foods.indexOf(targetItem);
-  console.log(index);
-  console.log(targetItem);
   // remove the item at that index, only remove 1 item
   foods.splice(index, 1);
   // render deleted object

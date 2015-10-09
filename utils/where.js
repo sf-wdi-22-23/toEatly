@@ -6,7 +6,6 @@ function where(arr, properties){
     for (key in obj){
       if (obj.hasOwnProperty(key) && obj[key] === properties[key]){
           output = obj;
-          console.log(output);
       }
     }
   }

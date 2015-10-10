@@ -7,8 +7,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <!-- jQuery -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
-  <!-- Underscore -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
   <!-- Bootstrap JS -->
@@ -31,14 +29,6 @@
     <ul class="list-group" id="food-ul">
     </ul>
   </div>
-  <script type="text/template" id="foods-template">
-    <li class='list-group-item'><%= name %>
-      <!-- yuminess label -->
-      <span class="label label-default"><%= yumminess%></span>
-      <!-- button w/ registered onclick function -->
-      <button data-id="<%= id %>" onclick="deleteFood(this)" type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-    </li>
-  </script>
 </body>
 </html>
 

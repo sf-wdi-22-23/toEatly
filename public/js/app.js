@@ -31,15 +31,15 @@ function getFoods() {
 }
 
 function renderFoods(foods) {
-  template = _.template($("#foods-template").html());
-  // input foods into template and append to parent
-  foodItems = foods.map(function(food) {
-    return template(food);
-  });
   // clear content (for repeated use)
   $("#food-ul").html("");
-  // append foods to ul
-  $("#food-ul").append(foodItems);
+  // loop over the foods and append to ul
+  for (var i=0; i<foods.length; i++) {
+    $("#food-ul").append("<li class='list-group-item'>" + foods[i].name + 
+      " <span class='label label-default'>"+foods[i].yumminess+"</span>" +
+      "<button data-id="+foods[i].id+" onclick='deleteFood(this)' type='button' class='close' aria-label='Close'><span aria-hidden='true'>&times;</span></button>" +
+      "</li>");
+  }
 }
 
 function deleteFood(context) {

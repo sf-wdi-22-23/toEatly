@@ -3,8 +3,9 @@ var express = require("express"),
     app = express(),
     path = require("path"),
     bodyParser = require("body-parser"),
-    where = require("./utils/where"),
-    views = path.join(process.cwd(), "views/");
+    views = path.join(process.cwd(), "views/"),
+    where = require("./utils/where");
+
 
 // CONFIG //
 // serve js & css files

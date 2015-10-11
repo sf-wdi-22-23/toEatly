@@ -28,9 +28,9 @@ app.get("/", function (req, res){
   res.sendFile(path.join(views + 'index.html'));
 });
 
-// foods index path
+// foods api path
 app.get("/api/foods", function (req, res){
-  // render foods index as JSON
+  // render foods data as JSON
   res.json(foods);
 });
 

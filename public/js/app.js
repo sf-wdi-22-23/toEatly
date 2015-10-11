@@ -1,5 +1,5 @@
 // On page load
-$(function() {
+$(document).ready(function(){
   pageLoad();
 });
 
@@ -12,13 +12,12 @@ function pageLoad() {
   $("#new-food-form").on("submit", function(e){
     // prevent form submission
     e.preventDefault();
-    // post to food#create
-    $.post("/api/foods", $(this).serialize())
-      .done(function(res){
-        // append new food to the page
-        getFoods();
-        $("#new-food-form")[0].reset();
-      });
+    // post serialized form to food#create
+    $.post("/api/foods", $(this).serialize(), function(response){
+      // append new food to the page
+      getFoods();
+      $("#new-food-form")[0].reset();
+    });
   });
 }
 
@@ -47,8 +46,8 @@ function deleteFood(context) {
   $.ajax({
     url: '/api/foods/' + foodId,
     type: 'DELETE',
-    success: function(res) {
-      // once successfull, re-render all foods
+    success: function(response) {
+      // once successful, re-render all foods
       getFoods();
     }
   });

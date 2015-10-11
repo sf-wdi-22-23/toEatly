@@ -10,7 +10,6 @@ var express = require("express"),
 // CONFIG //
 // serve js & css files
 app.use("/static", express.static("public"));
-// app.use("/vendor", express.static("bower_components"));
 // body parser config to accept all datatypes
 app.use(bodyParser.urlencoded({ extended: true }));
 

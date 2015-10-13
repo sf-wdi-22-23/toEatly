@@ -6,7 +6,6 @@ $(document).ready(function(){
 // function definitions
 
 function pageLoad() {
-  // load foods
   // set event listeners
   $("#new-food-form").on("submit", function(e){
     // prevent form submission

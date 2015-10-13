@@ -27,6 +27,13 @@
       <button type="submit" class="btn btn-default">Eat me!</button>
     </form>
     <ul class="list-group" id="food-ul">
+      <% for(var i=0; i<foods.length; i++) { %>
+        <li class='list-group-item'>
+          <%= foods[i].name %>
+          <span class='label label-default'><%= foods[i].yumminess %></span>
+          <button data-id="<%=foods[i].id%>" onclick='deleteFood(this)' type='button' class='close' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
+        </li>
+      <% } %>  
     </ul>
   </div>
 </body>

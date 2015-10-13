@@ -18,6 +18,7 @@
   "homepage": "https://github.com/sf-wdi-22-23/toEatly",
   "dependencies": {
     "body-parser": "^1.14.1",
+    "ejs": "^2.3.4",
     "express": "^4.12.3"
   }
 }

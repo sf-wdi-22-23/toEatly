@@ -8,6 +8,8 @@ var express = require("express"),
 
 
 // CONFIG //
+// set ejs as view engine
+app.set('view engine', 'ejs');
 // serve js & css files
 app.use("/static", express.static("public"));
 // body parser config to accept all datatypes
@@ -24,8 +26,8 @@ var foods =[
 
 // ROUTES //
 app.get("/", function (req, res){
-  // render index.html
-  res.sendFile(path.join(views + 'index.html'));
+  // render index.html and send foods
+  res.render('index', {foods: foods});
 });
 
 // foods api path
@@ -38,7 +40,7 @@ app.post("/api/foods", function (req, res){
   var newFood = req.body;
   // add a unique id
   newFood.id = foods[foods.length - 1].id + 1;
-  // add new food to DB (array, really...)
+  // add new food to DB (which, in this case, is an array)
   foods.push(newFood);
   // send a response with newly created object
   res.json(newFood);

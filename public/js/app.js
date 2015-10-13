@@ -7,38 +7,22 @@ $(document).ready(function(){
 
 function pageLoad() {
   // load foods
-  getFoods();
   // set event listeners
   $("#new-food-form").on("submit", function(e){
     // prevent form submission
     e.preventDefault();
-    // post serialized form to food#create
+    // post serialized form to server
     $.post("/api/foods", $(this).serialize(), function(response){
       // append new food to the page
-      getFoods();
+      var newFood = response;
+      $("#food-ul").prepend("<li class='list-group-item'>" + newFood.name + 
+        " <span class='label label-default'>"+newFood.yumminess+"</span>" +
+        "<button data-id="+newFood.id+" onclick='deleteFood(this)' type='button' class='close' aria-label='Close'><span aria-hidden='true'>&times;</span></button>" +
+        "</li>");
+      // clear new food form
       $("#new-food-form")[0].reset();
     });
   });
-}
-
-function getFoods() {
-  $.get("/api/foods", function(response){ 
-    var foods = response.reverse();
-    // grab foods template
-    renderFoods(foods);
-  });
-}
-
-function renderFoods(foods) {
-  // clear content (for repeated use)
-  $("#food-ul").html("");
-  // loop over the foods and append to ul
-  for (var i=0; i<foods.length; i++) {
-    $("#food-ul").append("<li class='list-group-item'>" + foods[i].name + 
-      " <span class='label label-default'>"+foods[i].yumminess+"</span>" +
-      "<button data-id="+foods[i].id+" onclick='deleteFood(this)' type='button' class='close' aria-label='Close'><span aria-hidden='true'>&times;</span></button>" +
-      "</li>");
-  }
 }
 
 function deleteFood(context) {
@@ -47,8 +31,8 @@ function deleteFood(context) {
     url: '/api/foods/' + foodId,
     type: 'DELETE',
     success: function(response) {
-      // once successful, re-render all foods
-      getFoods();
+      // once successful, remove food from the DOM
+      $(context).closest('li').remove();
     }
   });
 }

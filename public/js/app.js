@@ -14,12 +14,17 @@ function pageLoad() {
     $.post("/api/foods", $(this).serialize(), function(response){
       // append new food to the page
       var newFood = response;
-      $("#food-ul").prepend("<li class='list-group-item'>" + newFood.name + 
-        " <span class='label label-default'>"+newFood.yumminess+"</span>" +
-        "<button data-id="+newFood.id+" onclick='deleteFood(this)' type='button' class='close' aria-label='Close'><span aria-hidden='true'>&times;</span></button>" +
-        "</li>");
       // clear new food form
+      var string = makeHTMLString(newFood);
+      $("#food-ul").prepend(string);
       $("#new-food-form")[0].reset();
     });
   });
+}
+
+function makeHTMLString(food) {
+  return "<li class='list-group-item'>" + food.name + 
+    " <span class='label label-default'>"+food.yumminess+"</span>" +
+    "<button data-id="+food.id+" onclick='deleteFood(this)' type='button' class='close' aria-label='Close'><span aria-hidden='true'>&times;</span></button>" +
+    "</li>";
 }

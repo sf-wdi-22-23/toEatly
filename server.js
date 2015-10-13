@@ -3,8 +3,7 @@ var express = require("express"),
     app = express(),
     path = require("path"),
     bodyParser = require("body-parser"),
-    views = path.join(process.cwd(), "views/"),
-    where = require("./utils/where");
+    views = path.join(process.cwd(), "views/");
 
 
 // CONFIG //
@@ -44,19 +43,6 @@ app.post("/api/foods", function (req, res){
   foods.push(newFood);
   // send a response with newly created object
   res.json(newFood);
-});
-
-app.delete("/api/foods/:id", function (req, res){
-  // set the value of the id
-  var targetId = parseInt(req.params.id);
-  // find item in the array matching the id
-  var targetItem = where(foods, {id: targetId});
-  // get the index of the found item
-  var index = foods.indexOf(targetItem);
-  // remove the item at that index, only remove 1 item
-  foods.splice(index, 1);
-  // render deleted object
-  res.json(targetItem);
 });
 
 app.listen(3000, function (){

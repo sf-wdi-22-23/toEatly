@@ -24,15 +24,3 @@ function pageLoad() {
     });
   });
 }
-
-function deleteFood(context) {
-  var foodId = $(context).data().id;
-  $.ajax({
-    url: '/api/foods/' + foodId,
-    type: 'DELETE',
-    success: function(response) {
-      // once successful, remove food from the DOM
-      $(context).closest('li').remove();
-    }
-  });
-}

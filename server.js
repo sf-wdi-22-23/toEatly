@@ -30,7 +30,7 @@ app.get("/", function (req, res){
   res.render('index', {foods: foods});
 });
 
-// api route to get all foods (we don't use)
+// api route to get all foods
 app.get("/api/foods", function (req, res){
   // send foods data as JSON
   res.json(foods);

@@ -32,8 +32,8 @@
         <li class='list-group-item'>
           <%= foods[i].name %>
           <span class='label label-default'><%= foods[i].yumminess %></span>
+          <button data-id="<%=foods[i].id%>" type='button' class='close' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
         </li>
-        <button data-id="<%=foods[i].id%>" type='button' class='close' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
       <% } %>  
     </ul>
   </div>

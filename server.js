@@ -6,6 +6,7 @@ var express = require("express"),
     path = require("path"),
     bodyParser = require("body-parser");
 
+var where = require("./utils/where");
 
 // CONFIG //
 // set ejs as view engine

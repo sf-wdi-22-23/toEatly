@@ -29,6 +29,12 @@ function pageLoad() {
   $(document).on('click', 'button.close', function(e){
     deleteFood(this);
   });
+
+  // set event listener for all edit forms
+  $(document).on('submit', 'form.edit', function(e){
+    e.preventDefault();
+    updateFood(this);
+  });
 }
 
 function deleteFood(context) {
@@ -45,9 +51,39 @@ function deleteFood(context) {
   });
 }
 
+function updateFood(context){
+  console.log("serialized: ", $(context).serialize())
+  var foodId = $(context).data().id;
+  $.ajax({
+    url: '/api/foods/' + foodId,
+    type: 'PATCH',
+    data: $(context).serialize(),
+    success: function(response) {
+      // once successful, replace food in the DOM
+      var newLi = makeHTMLString(response);
+      $(context).closest('li').replaceWith(newLi);
+    }
+  });
+}
+
 function makeHTMLString(food) {
   return "<li class='list-group-item'>" + food.name + 
     " <span class='label label-default'>"+food.yumminess+"</span>" +
     "<button data-id="+food.id+" type='button' class='close' aria-label='Close'><span aria-hidden='true'>&times;</span></button>" +
-    "</li>";
+    updateHTMLString(food) +
+      "</li>";
+}
+
+
+// creates the 'update' parts of the HTML food string
+function updateHTMLString(food){
+  var htmlString  = '<!-- form to update food -->\n' + 
+      '<div id="update-'+ food.id +'">' +
+      '<form class="form-inline edit" data-id=' + food.id +'>' +
+      '<input type="text" class="form-control" value="'+ food.name +'" placeholder="Which food?">\n' +
+      '<input type="text" class="form-control" value="'+ food.yumminess + '" placeholder="How yummy?">\n'+
+      '<input type="submit" class="btn btn-default" value="Update food">' +
+      '</form>' +
+      '</div>';
+  return htmlString;
 }

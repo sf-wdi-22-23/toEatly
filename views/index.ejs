@@ -32,7 +32,14 @@
         <li class='list-group-item'>
           <%= foods[i].name %>
           <span class='label label-default'><%= foods[i].yumminess %></span>
+          <!-- delete button -->
           <button data-id="<%=foods[i].id%>" type='button' class='close' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
+          <!-- form to update food -->
+          <form class="form-inline edit" data-id=<%= foods[i].id %>>
+            <input name="name" type="text" class="form-control" value="<%= foods[i].name %>" placeholder="Which food?">
+            <input name="yumminess" type="text" class="form-control" value="<%= foods[i].yumminess %>" placeholder="How yummy?">
+            <input type="submit" class="btn btn-default" value="Update food">
+          </form>
         </li>
       <% } %>  
     </ul>

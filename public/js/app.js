@@ -1,3 +1,4 @@
+// CLIENT-SIDE JAVASCRIPT
 // On page load
 $(document).ready(function(){
   pageLoad();
@@ -14,17 +15,25 @@ function pageLoad() {
     $.post("/api/foods", $(this).serialize(), function(response){
       // append new food to the page
       var newFood = response;
-      $("#food-ul").prepend("<li class='list-group-item'>" + newFood.name + 
-        " <span class='label label-default'>"+newFood.yumminess+"</span>" +
-        "<button data-id="+newFood.id+" onclick='deleteFood(this)' type='button' class='close' aria-label='Close'><span aria-hidden='true'>&times;</span></button>" +
-        "</li>");
       // clear new food form
+      var foodString = makeHTMLString(newFood);
+      $("#food-ul").prepend(foodString);
+      // reset the form 
       $("#new-food-form")[0].reset();
+      // give focus back to the food name input
+      $("#food-name-input").focus();
     });
+  });
+
+  // set event listener for all delete buttons
+  $(document).on('click', 'button.close', function(e){
+    deleteFood(this);
   });
 }
 
 function deleteFood(context) {
+  console.log('context in deleteFood: ', context);
+  // context is the button that was clicked
   var foodId = $(context).data().id;
   $.ajax({
     url: '/api/foods/' + foodId,
@@ -34,4 +43,11 @@ function deleteFood(context) {
       $(context).closest('li').remove();
     }
   });
+}
+
+function makeHTMLString(food) {
+  return "<li class='list-group-item'>" + food.name + 
+    " <span class='label label-default'>"+food.yumminess+"</span>" +
+    "<button data-id="+food.id+" type='button' class='close' aria-label='Close'><span aria-hidden='true'>&times;</span></button>" +
+    "</li>";
 }

@@ -1,18 +1,19 @@
+// SERVER-SIDE JAVASCRIPT
+
 // REQUIREMENTS //
 var express = require("express"),
     app = express(),
     path = require("path"),
-    bodyParser = require("body-parser"),
-    views = path.join(process.cwd(), "views/"),
-    where = require("./utils/where");
+    bodyParser = require("body-parser");
 
+var where = require("./utils/where");
 
 // CONFIG //
 // set ejs as view engine
 app.set('view engine', 'ejs');
 // serve js & css files
 app.use("/static", express.static("public"));
-// body parser config to accept all datatypes
+// body parser config to accept our datatypes
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // DATA //
@@ -26,26 +27,32 @@ var foods =[
 
 // ROUTES //
 app.get("/", function (req, res){
-  // render index.html and send foods
+  // render index.html and send with foods data filled in
   res.render('index', {foods: foods});
 });
 
-// foods api path
+// api route to get all foods (we don't use)
 app.get("/api/foods", function (req, res){
-  // render foods data as JSON
+  // send foods data as JSON
   res.json(foods);
 });
 
+// api route to create new food
 app.post("/api/foods", function (req, res){
   var newFood = req.body;
   // add a unique id
-  newFood.id = foods[foods.length - 1].id + 1;
+  if (foods.length !== 0){
+	  newFood.id = foods[foods.length - 1].id + 1;
+  } else {
+  	newFood.id = 0;
+  }
   // add new food to DB (which, in this case, is an array)
   foods.push(newFood);
   // send a response with newly created object
   res.json(newFood);
 });
 
+// api route to delete a food
 app.delete("/api/foods/:id", function (req, res){
   // set the value of the id
   var targetId = parseInt(req.params.id);
@@ -55,7 +62,7 @@ app.delete("/api/foods/:id", function (req, res){
   var index = foods.indexOf(targetItem);
   // remove the item at that index, only remove 1 item
   foods.splice(index, 1);
-  // render deleted object
+  // send back deleted object
   res.json(targetItem);
 });
 

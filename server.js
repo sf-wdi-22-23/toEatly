@@ -51,6 +51,20 @@ app.post("/api/foods", function (req, res){
   res.json(newFood);
 });
 
+// api route to delete a food
+app.delete("/api/foods/:id", function (req, res){
+  // set the value of the id
+  var targetId = parseInt(req.params.id);
+  // find item in the array matching the id
+  var targetItem = where(foods, {id: targetId});
+  // get the index of the found item
+  var index = foods.indexOf(targetItem);
+  // remove the item at that index, only remove 1 item
+  foods.splice(index, 1);
+  // send back deleted object
+  res.json(targetItem);
+});
+
 app.listen(3000, function (){
   console.log("listening on port 3000");
 });

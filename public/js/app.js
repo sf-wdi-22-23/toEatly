@@ -21,11 +21,30 @@ function pageLoad() {
       $("#new-food-form")[0].reset();
     });
   });
+
+  // set event listener for all delete buttons
+  $(document).on('click', 'button.close', function(e){
+    deleteFood(this);
+  });
+}
+
+function deleteFood(context) {
+  // console.log('context in deleteFood: ', context);
+  // context is the button that was clicked
+  var foodId = $(context).data().id;
+  $.ajax({
+    url: '/api/foods/' + foodId,
+    type: 'DELETE',
+    success: function(response) {
+      // once successful, remove food from the DOM
+      $(context).closest('li').remove();
+    }
+  });
 }
 
 function makeHTMLString(food) {
   return "<li class='list-group-item'>" + food.name + 
     " <span class='label label-default'>"+food.yumminess+"</span>" +
-    "<button data-id="+food.id+" onclick='deleteFood(this)' type='button' class='close' aria-label='Close'><span aria-hidden='true'>&times;</span></button>" +
+    "<button data-id="+food.id+" type='button' class='close' aria-label='Close'><span aria-hidden='true'>&times;</span></button>" +
     "</li>";
 }

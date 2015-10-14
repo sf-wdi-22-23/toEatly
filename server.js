@@ -66,6 +66,22 @@ app.delete("/api/foods/:id", function (req, res){
   res.json(targetItem);
 });
 
+
+// api route to update a food
+app.patch("/api/foods/:id", function(req, res){
+  console.log("editing food ");
+  // set the value of the id
+  var targetId = parseInt(req.params.id);
+  // find item in the array matching the id
+  var targetItem = where(foods, {id: targetId});
+  // edit object, but don't change name or yumminess 
+  // if the request's values for them are blank 
+  targetItem.name = req.body.name || targetItem.name;
+  targetItem.yumminess = req.body.yumminess || targetItem.yumminess;
+  // send back edited object
+  res.json(targetItem);
+});
+
 app.listen(3000, function (){
   console.log("listening on port 3000");
 });

@@ -20,8 +20,26 @@
     <header class="page-header">
       <h1>ToEat.ly <small>Put it in my belly!</small></h1>
     </header>
+    <ul class="list-group" id="food-ul">
+      <% for(var i=0; i<foods.length; i++) { %>
+        <li class='list-group-item'>
+          <%= foods[i].name %>
+          <span class='label label-default'><%= foods[i].yumminess %></span>
+        </li>
+      <% } %>  
+    </ul>
   </div>
 </body>
 </html>
 
 
+
+
+
+
+
+
+
+
+
+>>>>>>> 0622d3cbcf328d7052b8b6b99f7795828f3f5a03

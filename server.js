@@ -6,6 +6,7 @@ var express = require("express"),
     path = require("path"),
     bodyParser = require("body-parser");
 
+
 // CONFIG //
 // set ejs as view engine
 app.set('view engine', 'ejs');
@@ -22,6 +23,18 @@ var foods =[
   {id: 3, name: "Foie Gras", yumminess: "omg"},
   {id: 4, name: "Kale", yumminess: "meh"}
 ];
+
+// ROUTES //
+app.get("/", function (req, res){
+  // render index.html and send with foods data filled in
+  res.render('index', {foods: foods});
+});
+
+// api route to get all foods (we don't use)
+app.get("/api/foods", function (req, res){
+  // send foods data as JSON
+  res.json(foods);
+});
 
 app.listen(3000, function (){
   console.log("listening on port 3000");

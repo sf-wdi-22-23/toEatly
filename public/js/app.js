@@ -18,7 +18,10 @@ function pageLoad() {
       // clear new food form
       var foodString = makeHTMLString(newFood);
       $("#food-ul").prepend(foodString);
+      // reset the form 
       $("#new-food-form")[0].reset();
+      // give focus back to the food name input
+      $("#food-name-input").focus();
     });
   });
 

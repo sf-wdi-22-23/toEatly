@@ -18,7 +18,10 @@ function pageLoad() {
       // clear new food form
       var foodString = makeHTMLString(newFood);
       $("#food-ul").prepend(foodString);
+      // reset the form 
       $("#new-food-form")[0].reset();
+      // give focus back to the food name input
+      $("#food-name-input").focus();
     });
   });
 }
@@ -26,6 +29,5 @@ function pageLoad() {
 function makeHTMLString(food) {
   return "<li class='list-group-item'>" + food.name + 
     " <span class='label label-default'>"+food.yumminess+"</span>" +
-    "<button data-id="+food.id+" onclick='deleteFood(this)' type='button' class='close' aria-label='Close'><span aria-hidden='true'>&times;</span></button>" +
     "</li>";
 }

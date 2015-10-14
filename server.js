@@ -41,7 +41,7 @@ app.post("/api/foods", function (req, res){
   var newFood = req.body;
   // add a unique id
   if (foods.length !== 0){
-	newFood.id = foods[foods.length - 1].id + 1;
+	  newFood.id = foods[foods.length - 1].id + 1;
   } else {
   	newFood.id = 0;
   }

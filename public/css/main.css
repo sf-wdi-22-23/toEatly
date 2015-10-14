@@ -1,1 +1,9 @@
 /* Custom CSS */
+li {
+	font-size: 150%;		
+	color: orange;
+}
+
+h1 small {
+	color: orange;
+}

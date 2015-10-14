@@ -77,11 +77,11 @@ function makeHTMLString(food) {
 
 // creates the 'update' parts of the HTML food string
 function updateHTMLString(food){
-  var htmlString  = '<!-- form to update food -->\n' + 
+  var htmlString  = '<br><!-- form to update food -->\n' + 
       '<div id="update-'+ food.id +'">' +
       '<form class="form-inline edit" data-id=' + food.id +'>' +
-      '<input type="text" class="form-control" value="'+ food.name +'" placeholder="Which food?">\n' +
-      '<input type="text" class="form-control" value="'+ food.yumminess + '" placeholder="How yummy?">\n'+
+      '<input name="name" type="text" class="form-control" placeholder="Updated food name">\n' +
+      '<input name="yumminess" type="text" class="form-control" placeholder="Updated yumminess">\n'+
       '<input type="submit" class="btn btn-default" value="Update food">' +
       '</form>' +
       '</div>';

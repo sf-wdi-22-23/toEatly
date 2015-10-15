@@ -72,7 +72,6 @@ app.delete("/api/foods/:id", function (req, res){
 
 // api route to update a food
 app.patch("/api/foods/:id", function(req, res){
-  console.log("editing food ");
   // set the value of the id
   var targetId = parseInt(req.params.id);
   // find item in the array matching the id

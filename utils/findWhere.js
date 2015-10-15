@@ -1,3 +1,5 @@
+ // UTILITY FUNCTION
+
  // loops through an array of objects
  // and returns the first one that matches all key-value pairs
  // in the properties object 
@@ -35,4 +37,23 @@
   return null;
 }
 
+
+// module.exports says what will be 
+// brought into another file with `require`
 module.exports = findWhere;
+
+
+
+// example use
+
+var grandparents = [
+  {first: "Linda", last: "Veenstra", birthYear: 1942},
+  {first: "Jim", last: "Veenstra", birthYear: 1939},
+  {first: "Panfilo", last: "Fuentes", birthYear: 1942},
+  {first: "Linda", last: "Fuentes", birthYear: 1955}
+];
+
+console.log("example use of findWhere utility function: ");
+console.log("grandparents:  ", grandparents, '\n');
+console.log("findWhere(grandparents, {first: 'Linda'})");
+console.log("    =>", findWhere(grandparents, {first: "Linda"}), '\n');

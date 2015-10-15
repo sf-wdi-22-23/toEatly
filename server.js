@@ -6,7 +6,7 @@ var express = require("express"),
     path = require("path"),
     bodyParser = require("body-parser");
 
-var where = require("./utils/where");
+var findWhere = require("./utils/findWhere.js");
 
 // CONFIG //
 // set ejs as view engine
@@ -57,7 +57,7 @@ app.delete("/api/foods/:id", function (req, res){
   // set the value of the id
   var targetId = parseInt(req.params.id);
   // find item in the array matching the id
-  var targetItem = where(foods, {id: targetId});
+  var targetItem = findWhere(foods, {id: targetId});
   // get the index of the found item
   var index = foods.indexOf(targetItem);
   // remove the item at that index, only remove 1 item

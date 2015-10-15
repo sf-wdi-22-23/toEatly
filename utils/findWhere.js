@@ -40,8 +40,7 @@
 module.exports = findWhere;
 
 
-// example use (run `node findWhere.js` in Terminal 
-  // from the utils directory to see output):
+
 
 var grandparents = [
   {first: "Linda", last: "Veenstra", birthYear: 1942},
@@ -49,13 +48,8 @@ var grandparents = [
   {first: "Panfilo", last: "Fuentes", birthYear: 1942},
   {first: "Linda", last: "Fuentes", birthYear: 1955}
 ];
-
-console.log(findWhere(grandparents, {first: "Jim"})); 
-// returns {first: "Jim", last: "Veenstra", birthYear: 1939}
-
-console.log(findWhere(grandparents, {first: "Linda"}));
-// returns {first: "Linda", last: "Veenstra", birthYear: 1942}
-// note -- it returns the first match it finds!
-
-console.log(findWhere(grandparents, {last: "Fuentes", birthYear: 1942}));
-// returns  {first: "Panfilo", last: "Fuentes", birthYear: 1942}
+// example use
+console.log("example use of findWhere utility function: ");
+console.log("grandparents:  ", grandparents, '\n');
+console.log("findWhere(grandparents, {first: 'Linda'})");
+console.log("    =>", findWhere(grandparents, {first: "Linda"}), '\n');

@@ -6,7 +6,10 @@ var express = require("express"),
     path = require("path"),
     bodyParser = require("body-parser");
 
-var where = require("./utils/where");
+// module.exports from ./utils/findWhere.js file
+// is returned when we require that file name 
+//
+var findWhere = require("./utils/findWhere.js");
 
 // CONFIG //
 // set ejs as view engine
@@ -57,7 +60,7 @@ app.delete("/api/foods/:id", function (req, res){
   // set the value of the id
   var targetId = parseInt(req.params.id);
   // find item in the array matching the id
-  var targetItem = where(foods, {id: targetId});
+  var targetItem = findWhere(foods, {id: targetId});
   // get the index of the found item
   var index = foods.indexOf(targetItem);
   // remove the item at that index, only remove 1 item
@@ -73,7 +76,7 @@ app.patch("/api/foods/:id", function(req, res){
   // set the value of the id
   var targetId = parseInt(req.params.id);
   // find item in the array matching the id
-  var targetItem = where(foods, {id: targetId});
+  var targetItem = findWhere(foods, {id: targetId});
   // edit object, but don't change name or yumminess 
   // if the request's values for them are blank 
   targetItem.name = req.body.name || targetItem.name;
